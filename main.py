@@ -15,7 +15,7 @@
 try:
     import asyncio
     from pyrogram import Client, idle, filters
-    import os
+    import os, sys
     from config import Config
     from utils import mp, USERNAME, FFMPEG_PROCESSES
     from pyrogram.raw import functions, types
