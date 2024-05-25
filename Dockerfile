@@ -1,10 +1,9 @@
-FROM debian:latest
+FROM python:3.9-slim
 
-RUN apt update && apt upgrade -y
-RUN apt install git curl python3 python3-pip ffmpeg -y
-COPY requirements.txt /requirements.txt
-RUN pip3 install -r /requirements.txt
-RUN mkdir /MusicPlayer
+COPY requirements.txt /
+RUN pip install --no-cache-dir -r /requirements.txt
+
+COPY main.py /MusicPlayer/
 WORKDIR /MusicPlayer
-COPY main.py /main.py
-CMD ["python3", "/main.py"]
+
+CMD ["python", "main.py"]
