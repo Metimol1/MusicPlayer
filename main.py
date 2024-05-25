@@ -25,15 +25,12 @@ try:
     from threading import Thread
     from signal import SIGINT
     import subprocess
-    
-except ModuleNotFoundError:
-    import os
-    import sys
-    import subprocess
-    file=os.path.abspath("requirements.txt")
-    subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-r', file, '--upgrade'])
-    os.execl(sys.executable, sys.executable, *sys.argv)
 
+except ModuleNotFoundError as e:
+    print(f"Error: {e}")
+    print("Some required modules are missing. Please install the dependencies by running:")
+    print("pip install -r requirements.txt")
+    sys.exit(1)
 
 CHAT=Config.CHAT
 bot = Client(
